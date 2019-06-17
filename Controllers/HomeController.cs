@@ -22,7 +22,7 @@ namespace HireTrailer.Controllers
         {
             public List<Trailer> Trailers { get; set; }
             public List<Client> Clients { get; set; }
-            public List<Rental> Rentals { get; set; }
+            public List<RentalRetrieve> Rentals { get; set; }
         }
 
         private readonly AppContext Context;
@@ -35,12 +35,32 @@ namespace HireTrailer.Controllers
         [HttpGet]
         public IHttpActionResult GetAll()
         {
+            List<RentalRetrieve> rentals = new List<RentalRetrieve>();
+
+            Context.Rentals.ToList().ForEach(r => rentals.Add(new RentalRetrieve
+            {
+                Client = r.Client.Name,
+                TraileRegistration = r.TraileRegistration,
+                DateRented = r.DateRented                
+            }));
+
             return Ok(new ListCollection
             {
                 Clients = Context.Clients.ToList(),
                 Trailers = Context.Trailers.ToList(),
-                Rentals = Context.Rentals.ToList()
+                Rentals = rentals
             });
         }
+
+        /*[HttpGet]
+        [ActionName("available")]
+        public IHttpActionResult GetAvailable()
+        {
+            return Ok(new ListCollection
+            {
+                Clients = Context.Clients.Where(c => !c.IsRenting).ToList(),
+                Trailers = Context.Trailers.Where(t => !t.IsHired).ToList()
+            });
+        }*/
     }
 }

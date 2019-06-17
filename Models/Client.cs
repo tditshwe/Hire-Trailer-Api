@@ -11,5 +11,7 @@ namespace HireTrailer.Models
         public DateTime DateCreated { get; set; }
         public DateTime LastRented { get; set; }
         public bool IsRenting { get; set; }
+
+        public virtual Rental Rental { get; set; }
     }
 }

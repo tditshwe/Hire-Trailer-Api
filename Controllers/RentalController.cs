@@ -8,7 +8,6 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using HireTrailer;
 using HireTrailer.Models;
 using System.Web.Http.Cors;
 
@@ -24,6 +23,8 @@ namespace HireTrailer.Controllers
         {
             return db.Rentals;
         }
+
+       
 
         // GET: api/Rental/5
         [ResponseType(typeof(Rental))]
@@ -83,8 +84,13 @@ namespace HireTrailer.Controllers
             }
 
             DateTime now = DateTime.Now;
+            Trailer tr = db.Trailers.Find(rental.TraileRegistration);
+            Client cl = db.Clients.Find(rental.ClientId);
 
             rental.DateRented = now;
+            rental.Client = cl;
+            tr.IsHired = true;
+            cl.IsRenting = true;
 
             db.Rentals.Add(rental);
             db.SaveChanges();

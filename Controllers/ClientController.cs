@@ -47,7 +47,7 @@ namespace HireTrailer.Controllers
         public IHttpActionResult CreateClient([FromBody] Client c)
         {
             DateTime lastRented = new DateTime(2000, 1, 1, 0, 0, 0);
-            DateTime now = DateTime.Now;
+            DateTime now = DateTime.Now;          
 
             c.DateCreated = now;
             c.LastRented = lastRented;
@@ -56,7 +56,7 @@ namespace HireTrailer.Controllers
             Context.Clients.Add(c);
             Context.SaveChanges();
 
-            return Ok("Client Created");
+            return Ok(c);
         }
     }
 }
