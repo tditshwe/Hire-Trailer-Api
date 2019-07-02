@@ -36,6 +36,12 @@ namespace HireTrailer.Controllers
         public IHttpActionResult GetAll()
         {
             List<RentalRetrieve> rentals = new List<RentalRetrieve>();
+            List<Client> clients = Context.Clients.ToList();
+
+            clients.ForEach(c => c.Rental = new Rental
+            {
+
+            });
 
             Context.Rentals.ToList().ForEach(r => rentals.Add(new RentalRetrieve
             {
@@ -44,15 +50,16 @@ namespace HireTrailer.Controllers
                 DateRented = r.DateRented                
             }));
 
+
             return Ok(new ListCollection
             {
-                Clients = Context.Clients.ToList(),
+                Clients = ,
                 Trailers = Context.Trailers.ToList(),
                 Rentals = rentals
             });
         }
 
-        /*[HttpGet]
+        [HttpGet]
         [ActionName("available")]
         public IHttpActionResult GetAvailable()
         {
@@ -61,6 +68,6 @@ namespace HireTrailer.Controllers
                 Clients = Context.Clients.Where(c => !c.IsRenting).ToList(),
                 Trailers = Context.Trailers.Where(t => !t.IsHired).ToList()
             });
-        }*/
+        }
     }
 }

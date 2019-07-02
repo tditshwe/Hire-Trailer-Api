@@ -48,7 +48,7 @@ namespace HireTrailer.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != rental.Id)
+            if (id != rental.ClientId)
             {
                 return BadRequest();
             }
@@ -95,7 +95,7 @@ namespace HireTrailer.Controllers
             db.Rentals.Add(rental);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = rental.Id }, rental);
+            return CreatedAtRoute("DefaultApi", new { id = rental.ClientId }, rental);
         }
 
         // DELETE: api/Rental/5
@@ -125,7 +125,7 @@ namespace HireTrailer.Controllers
 
         private bool RentalExists(int id)
         {
-            return db.Rentals.Count(e => e.Id == id) > 0;
+            return db.Rentals.Count(e => e.ClientId == id) > 0;
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
 namespace HireTrailer.Models
 {
@@ -12,10 +13,10 @@ namespace HireTrailer.Models
 
     public class Rental
     {
+        [Key]
         [ForeignKey("Client")]
-        public int Id { get; set; }
-        public DateTime DateRented { get; set; }
         public int ClientId { get; set; }
+        public DateTime DateRented { get; set; }
 
         [ForeignKey("Trailer")]
         public string TraileRegistration { get; set; }

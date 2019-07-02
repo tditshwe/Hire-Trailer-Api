@@ -12,6 +12,7 @@ namespace HireTrailer
     {
         public AppContext() : base("TrailerHireContext")
         {
+            this.Configuration.LazyLoadingEnabled = false;
         }
 
         public DbSet<Client> Clients { get; set; }
