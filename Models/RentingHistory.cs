@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace HireTrailer.Models
+namespace HireTrailerApi.Models
 {
     public class RentingHistory
     {

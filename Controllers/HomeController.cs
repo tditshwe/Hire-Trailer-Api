@@ -1,72 +1,46 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
-using System.Web.Http.Description;
-using HireTrailer;
-using HireTrailer.Models;
-using System.Web.Http.Cors;
-using Newtonsoft.Json.Linq;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using HireTrailerApi.Models;
 
-namespace HireTrailer.Controllers
+namespace HireTrailerApi.Controllers
 {
-    [EnableCors(origins: "http://localhost:8000", headers: "*", methods: "*")]
-    public class HomeController : ApiController
+    [Route("hiretrailer/[controller]")]
+    [ApiController]
+    public class HomeController : ControllerBase
     {
-        class ListCollection
-        {
-            public List<Trailer> Trailers { get; set; }
-            public List<Client> Clients { get; set; }
-            public List<RentalRetrieve> Rentals { get; set; }
-        }
-
-        private readonly AppContext Context;
-
-        public HomeController()
-        {
-            Context = new AppContext();
-        }
+        private readonly HireTrailerContext _ctx = new HireTrailerContext();
 
         [HttpGet]
-        public IHttpActionResult GetAll()
+        public IActionResult GetAll()
         {
-            List<RentalRetrieve> rentals = new List<RentalRetrieve>();
-            List<Client> clients = Context.Clients.ToList();
+            var clients = _ctx.Client;
+            var rentals = _ctx.Rental
+                .Join(_ctx.Trailer, r => r.TraileRegistration, t => t.Registration,
+                (r, t) => new {
+                    Client = r.Client.Name,
+                    Trailer = t.Registration,
+                    Date = r.DateRented
+                });
 
-            clients.ForEach(c => c.Rental = new Rental
+            return Ok(new 
             {
-
-            });
-
-            Context.Rentals.ToList().ForEach(r => rentals.Add(new RentalRetrieve
-            {
-                Client = r.Client.Name,
-                TraileRegistration = r.TraileRegistration,
-                DateRented = r.DateRented                
-            }));
-
-
-            return Ok(new ListCollection
-            {
-                Clients = ,
-                Trailers = Context.Trailers.ToList(),
+                Clients = clients,
+                Trailers = _ctx.Trailer,
                 Rentals = rentals
             });
         }
 
         [HttpGet]
-        [ActionName("available")]
-        public IHttpActionResult GetAvailable()
+        [Route("available")]
+        public ActionResult GetAvailable()
         {
-            return Ok(new ListCollection
+            return Ok(new
             {
-                Clients = Context.Clients.Where(c => !c.IsRenting).ToList(),
-                Trailers = Context.Trailers.Where(t => !t.IsHired).ToList()
+                Clients = _ctx.Client.Where(c => !c.IsRenting).ToList(),
+                Trailers = _ctx.Trailer.Where(t => !t.IsRented).ToList()
             });
         }
     }

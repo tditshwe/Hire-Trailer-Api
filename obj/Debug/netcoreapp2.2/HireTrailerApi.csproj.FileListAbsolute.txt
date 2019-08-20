@@ -1,0 +1,14 @@
+C:\Users\kgothatsod\Documents\Visual Studio code\HireTrailerApi\bin\Debug\netcoreapp2.2\HireTrailerApi.deps.json
+C:\Users\kgothatsod\Documents\Visual Studio code\HireTrailerApi\bin\Debug\netcoreapp2.2\HireTrailerApi.runtimeconfig.json
+C:\Users\kgothatsod\Documents\Visual Studio code\HireTrailerApi\bin\Debug\netcoreapp2.2\HireTrailerApi.runtimeconfig.dev.json
+C:\Users\kgothatsod\Documents\Visual Studio code\HireTrailerApi\bin\Debug\netcoreapp2.2\HireTrailerApi.dll
+C:\Users\kgothatsod\Documents\Visual Studio code\HireTrailerApi\bin\Debug\netcoreapp2.2\HireTrailerApi.pdb
+C:\Users\kgothatsod\Documents\Visual Studio code\HireTrailerApi\obj\Debug\netcoreapp2.2\HireTrailerApi.csprojAssemblyReference.cache
+C:\Users\kgothatsod\Documents\Visual Studio code\HireTrailerApi\obj\Debug\netcoreapp2.2\HireTrailerApi.csproj.CoreCompileInputs.cache
+C:\Users\kgothatsod\Documents\Visual Studio code\HireTrailerApi\obj\Debug\netcoreapp2.2\HireTrailerApi.RazorAssemblyInfo.cache
+C:\Users\kgothatsod\Documents\Visual Studio code\HireTrailerApi\obj\Debug\netcoreapp2.2\HireTrailerApi.RazorAssemblyInfo.cs
+C:\Users\kgothatsod\Documents\Visual Studio code\HireTrailerApi\obj\Debug\netcoreapp2.2\HireTrailerApi.AssemblyInfoInputs.cache
+C:\Users\kgothatsod\Documents\Visual Studio code\HireTrailerApi\obj\Debug\netcoreapp2.2\HireTrailerApi.AssemblyInfo.cs
+C:\Users\kgothatsod\Documents\Visual Studio code\HireTrailerApi\obj\Debug\netcoreapp2.2\HireTrailerApi.RazorTargetAssemblyInfo.cache
+C:\Users\kgothatsod\Documents\Visual Studio code\HireTrailerApi\obj\Debug\netcoreapp2.2\HireTrailerApi.dll
+C:\Users\kgothatsod\Documents\Visual Studio code\HireTrailerApi\obj\Debug\netcoreapp2.2\HireTrailerApi.pdb
